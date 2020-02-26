@@ -24,7 +24,7 @@ class Footer extends React.Component {
                         <h5 className="text-uppercase">Links</h5>
                         <ul className="list-unstyled">
                         <li>
-                            <a href="/">Home</a>
+                            <a href="/Newscast">Home</a>
                         </li>
                         <li>
                             <a href="#!">Sports</a>

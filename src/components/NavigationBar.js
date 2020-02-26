@@ -15,7 +15,7 @@ class NavigationBar extends React.Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Link to={'/'}>
+                        <Link to={'/Newscast'}>
                         <NavItem href="#">Home</NavItem>
                         </Link>
                         <NavItem href="#">Top News</NavItem>

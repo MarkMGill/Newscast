@@ -13,8 +13,8 @@ class App extends React.Component {
                 <div>
                     <NavigationBar />
                     <Switch>
-                        <Route path="/" exact component={MainNews} />
-                        <Route path='/news/:id' exact component={NewsStory} />
+                        <Route path='/Newscast' exact component={MainNews} />
+                        <Route path='/Newscast/news/:id' exact component={NewsStory} />
                     </Switch>
                     <Footer />
                 </div>

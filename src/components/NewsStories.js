@@ -19,7 +19,7 @@ class NewsStories extends React.Component {
             const desc = element.description.slice(0, 100).trim() + '...';
             return (
                 <div onClick={() => this.props.newsStoryLoad(element)} key={index} className="mb-3">
-                    <Link to={`/news/${title}`}>
+                    <Link to={`/Newscast/news/${title}`}>
                         <div className="row no-gutters">
                             <div className="col-md-4">
                                 <img src={urlToImage} className="card-img mt-3 ml-2" alt="..."></img>

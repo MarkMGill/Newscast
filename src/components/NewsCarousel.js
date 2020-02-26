@@ -33,7 +33,7 @@ class NewsCarousel extends React.Component {
             }
             return (
                 <Carousel.Item key={index} onClick={() => this.props.newsStoryLoad(element)}>
-                    <Link to={`/news/${element.title}`}>
+                    <Link to={`/Newscast/news/${element.title}`}>
                         <img
                         className="d-block w-100"
                         src={element.urlToImage}
