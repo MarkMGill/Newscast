@@ -9,6 +9,8 @@ class NewsStory extends React.Component {
         if(!this.props.newsStories.length) {
             this.props.newsStoriesLoad();
         }
+        // start at the top of the page
+        window.scrollTo(0, 0);
     }
 
     showStory = () => {
@@ -18,7 +20,9 @@ class NewsStory extends React.Component {
         // map through newsStories and display only the story with a url in browser that matches title of story
         return this.props.newsStories.map((el, index) => {
             const { title, description, content, url } = el;
-            if(this.props.match.params.id === el.title) {
+            // format title to use in URL
+            const formatURLTitle = this.props.match.params.id.replace(/[^A-Z0-9]+/ig, "-");
+            if(formatURLTitle === title) {
                 return (
                     <div key={index} className="mb-5 pb-5">
                         <h1 className="display-4">{title}</h1>

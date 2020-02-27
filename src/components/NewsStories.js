@@ -11,15 +11,17 @@ class NewsStories extends React.Component {
         }
         // map through newsStories to create card for each story
         return this.props.newsStories.map((element, index) => {
-            if(index < 5 || element.urlToImage === null || element.title ===  null) {
+            const { title, description, urlToImage } = element;
+            if(index < 5 || urlToImage === null || title ===  null) {
                 return null;
             }
-            const { title, urlToImage } = element;
             // shorten news description to fit the card
-            const desc = element.description.slice(0, 100).trim() + '...';
+            const desc = description.slice(0, 100).trim() + '...';
+            // format title to use in URL
+            const formatTitle = title.replace(/[^A-Z0-9]+/ig, "-");
             return (
                 <div onClick={() => this.props.newsStoryLoad(element)} key={index} className="mb-3">
-                    <Link to={`/Newscast/news/${title}`}>
+                    <Link to={`/Newscast/news/${formatTitle}`}>
                         <div className="row no-gutters">
                             <div className="col-md-4">
                                 <img src={urlToImage} className="card-img mt-3 ml-2" alt="..."></img>

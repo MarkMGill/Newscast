@@ -28,21 +28,24 @@ class NewsCarousel extends React.Component {
     showNewsCarousel = () => {
         // map through newsStories reducer to create 5 carousel items from first 5 indexes in newsStories array
         return this.props.newsStories.map((element, index) => {
-            if(index > 4 || element.urlToImage === null || element.title ===  null) {
+            const { title, urlToImage } = element;
+            if(index > 4 || urlToImage === null || title ===  null) {
                 return null;
             }
+            // format title to use in URL
+            const formatTitle = title.replace(/[^A-Z0-9]+/ig, "-");
             return (
                 <Carousel.Item key={index} onClick={() => this.props.newsStoryLoad(element)}>
-                    <Link to={`/Newscast/news/${element.title}`}>
+                    <Link to={`/Newscast/news/${formatTitle}`}>
                         <img
                         className="d-block w-100"
-                        src={element.urlToImage}
+                        src={urlToImage}
                         alt="First slide"
                         width="700px"
                         height="450px"
                         />
                         <Carousel.Caption>
-                            <h5 className="bg-dark" style={{opacity: "0.9"}}>{element.title}</h5>
+                            <h5 className="bg-dark" style={{opacity: "0.9"}}>{title}</h5>
                         </Carousel.Caption>
                     </Link>
                 </Carousel.Item>
