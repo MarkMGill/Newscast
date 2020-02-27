@@ -21,8 +21,8 @@ class NewsStory extends React.Component {
         return this.props.newsStories.map((el, index) => {
             const { title, description, content, url } = el;
             // format title to use in URL
-            const formatURLTitle = this.props.match.params.id.replace(/[^A-Z0-9]+/ig, "-");
-            if(formatURLTitle === title) {
+            const formatTitle = title.replace(/[^A-Z0-9]+/ig, "-");
+            if(this.props.match.params.id === formatTitle) {
                 return (
                     <div key={index} className="mb-5 pb-5">
                         <h1 className="display-4">{title}</h1>
