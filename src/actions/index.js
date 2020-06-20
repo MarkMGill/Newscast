@@ -1,10 +1,10 @@
 import openWeatherMap from '../apis/openWeatherMap';
-import newsAPI from '../apis/newsAPI';
+import bingNews from '../apis/bingNews';
 
 export const newsStoriesLoad = () => async dispatch => {
-    const response = await newsAPI.get(`v2/top-headlines?country=us&apiKey=7a4e481d736140efae783b1bfd607fbe`);
-
-    dispatch({type: 'NEWS_STORIES_LOAD', payload: response.data.articles });
+    const response = await bingNews.get(`bing/v7.0/news/?originalImg=true`);
+    
+    dispatch({type: 'NEWS_STORIES_LOAD', payload: response.data.value });
 }
 
 export const newsStoryLoad = (value) => {

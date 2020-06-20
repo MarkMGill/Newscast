@@ -27,25 +27,27 @@ class NewsCarousel extends React.Component {
 
     showNewsCarousel = () => {
         // map through newsStories reducer to create 5 carousel items from first 5 indexes in newsStories array
+        console.log(this.props.newsStories);
         return this.props.newsStories.map((element, index) => {
-            const { title, urlToImage } = element;
-            if(index > 4 || urlToImage === null || title ===  null) {
+            const { name } = element;
+            const { contentUrl } = element.image;
+            if(index > 4 || contentUrl === null || name ===  null) {
                 return null;
             }
-            // format title to use in URL
-            const formatTitle = title.replace(/[^A-Z0-9]+/ig, "-");
+            // format name to use in URL
+            const formatName = name.replace(/[^A-Z0-9]+/ig, "-");
             return (
                 <Carousel.Item key={index} onClick={() => this.props.newsStoryLoad(element)}>
-                    <Link to={`/Newscast/news/${formatTitle}`}>
+                    <Link to={`/Newscast/news/${formatName}`}>
                         <img
                         className="d-block w-100"
-                        src={urlToImage}
+                        src={contentUrl}
                         alt="First slide"
                         width="700px"
                         height="450px"
                         />
                         <Carousel.Caption>
-                            <h5 className="bg-dark" style={{opacity: "0.9"}}>{title}</h5>
+                            <h5 className="bg-dark" style={{opacity: "0.9"}}>{name}</h5>
                         </Carousel.Caption>
                     </Link>
                 </Carousel.Item>
@@ -55,6 +57,7 @@ class NewsCarousel extends React.Component {
     }
 
     render() {
+              
         if(this.props.newsStories === []) {
             return <div>Loading...</div>;
         }
@@ -64,6 +67,7 @@ class NewsCarousel extends React.Component {
         </Carousel>
         );
     }
+    
 }
 
 const mapStateToProps = state => {

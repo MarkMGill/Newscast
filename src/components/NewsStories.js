@@ -11,24 +11,25 @@ class NewsStories extends React.Component {
         }
         // map through newsStories to create card for each story
         return this.props.newsStories.map((element, index) => {
-            const { title, description, urlToImage } = element;
-            if(index < 5 || urlToImage === null || title ===  null) {
+            const { name, description } = element;
+            const { contentUrl } = element.image;
+            if(contentUrl === null || name ===  null) {
                 return null;
             }
             // shorten news description to fit the card
             const desc = description.slice(0, 100).trim() + '...';
-            // format title to use in URL
-            const formatTitle = title.replace(/[^A-Z0-9]+/ig, "-");
+            // format name to use in URL
+            const formatName = name.replace(/[^A-Z0-9]+/ig, "-");
             return (
                 <div onClick={() => this.props.newsStoryLoad(element)} key={index} className="mb-3">
-                    <Link to={`/Newscast/news/${formatTitle}`}>
+                    <Link to={`/Newscast/news/${formatName}`}>
                         <div className="row no-gutters">
                             <div className="col-md-4">
-                                <img src={urlToImage} className="card-img mt-3 ml-2" alt="..."></img>
+                                <img src={contentUrl} className="card-img mt-3 ml-2" alt="..."></img>
                             </div>
                             <div className="col-md-8">
                                 <div className="card-body">
-                                    <h5 className="card-title">{title}</h5>
+                                    <h5 className="card-title">{name}</h5>
                                     <p className="card-text">{desc}</p>
                                 </div>
                             </div>
@@ -40,6 +41,7 @@ class NewsStories extends React.Component {
     }
 
     render() {
+        
         if(!this.props.newsStories) {
             return <div>Loading...</div>
         }
@@ -50,6 +52,7 @@ class NewsStories extends React.Component {
             </div>
         );
     }
+    
 }
 
 const mapStateToProps = state => {
